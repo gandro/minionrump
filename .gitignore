@@ -1,0 +1,8 @@
+*~
+*.o
+*.a
+*.d
+
+rumpobj
+hw/minion.elf
+hw/include/bmk/machine
