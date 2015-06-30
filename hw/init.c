@@ -22,16 +22,15 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-
+ 
+// TODO move to sane location
 #define bool	_Bool
 #define true	1
 #define false	0
 
 #include <bmk/kernel.h>
-
+#include <bmk-core/printf.h>
 #include <rump/rump.h>
-
-
 
 void
 bmk_mainthread(void *cmdline)
