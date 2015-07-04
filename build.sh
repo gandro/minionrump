@@ -39,6 +39,11 @@ buildhw()
 	( cd hw && ${MAKE} MACHINE=${MACHINE} RUMP=$RUMP ${1} || exit 1)
 }
 
+builddrv()
+{
+	TOPRUMP=$RUMP ${RUMPMAKE} -C drv/libhtif	$1
+}
+
 clean()
 {
 	buildhw clean
@@ -51,9 +56,12 @@ export MACHINE=riscv
 export CC=riscv64-unknown-linux-gnu-gcc
 export NM=riscv64-unknown-linux-gnu-nm
 export AR=riscv64-unknown-linux-gnu-ar
-export LD=riscv64-unknown-linux-gnu-gcc
+export LD=riscv64-unknown-linux-gnu-ld
 export OBJCOPY=riscv64-unknown-linux-gnu-objcopy
 
+
 buildrump
-buildrumpuser
-buildhw
+
+buildrumpuser		$1
+builddrv		$1
+buildhw			$1

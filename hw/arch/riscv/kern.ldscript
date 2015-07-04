@@ -47,6 +47,20 @@ SECTIONS
 	}
 	_edata = . ;
 
+	link_set_modules :
+	{
+		__start_link_set_modules = .;
+		*(link_set_modules);
+		__stop_link_set_modules = .;
+	}
+
+	link_set_rump_components :
+	{
+		__start_link_set_rump_components = .;
+		*(link_set_rump_components);
+		__stop_link_set_rump_components = .;
+	}
+
 	. = ALIGN(16);
 	_gp = . + 0x800;
 

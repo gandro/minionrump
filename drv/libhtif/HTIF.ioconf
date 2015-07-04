@@ -1,5 +1,15 @@
 ioconf htif
 
+include "conf/files"
+include "rump/dev/files.rump"
+
+
+#pseudo-root htif
+
+device	htif
+attach	htif at mainbus
+file	htif.c	htif
+
 pseudo-root mainbus*
 
-htif*    at mainbus? bus ?
+htif* at mainbus?

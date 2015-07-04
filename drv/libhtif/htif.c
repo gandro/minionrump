@@ -51,6 +51,6 @@ static void
 htif_attach(device_t parent, device_t self, void *aux)
 {
 	struct htif_softc * const sc = device_private(self);
-	device_printf(self, "attaching");
+	device_printf(self, "attaching\n");
 	sc->sc_dev = self;
 }

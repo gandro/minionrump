@@ -30,7 +30,13 @@
 
 #include <bmk/kernel.h>
 #include <bmk-core/printf.h>
+
 #include <rump/rump.h>
+
+void rumpns_do_sys_sync(void *arg)
+{
+
+}
 
 void
 bmk_mainthread(void *cmdline)
@@ -40,6 +46,7 @@ bmk_mainthread(void *cmdline)
 	rump_boot_setsigmodel(RUMP_SIGMODEL_IGNORE);
 	rv = rump_init();
 	bmk_printf("rump kernel init complete, rv %d\n", rv);
+
 
 	while(1);
 }

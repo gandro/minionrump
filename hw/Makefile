@@ -14,6 +14,7 @@ OBJS_BMK+=		intr.o clock.o kernel.o multiboot.o undefs.o
 LDFLAGS:= -L$(abspath ${RUMP}/lib)
 LDFLAGS+= -L$(abspath ../librumpuser/lib/libbmk_core/)
 LDFLAGS+= -L$(abspath ../librumpuser/lib/libbmk_rumpuser/)
+LDFLAGS+= -L$(abspath ../drv/libhtif/)
 
 include arch/${MACHINE}/Makefile.inc
 
@@ -27,9 +28,13 @@ include/bmk/machine:
 	@ln -s ../arch/${MACHINE} include/bmk/machine
 
 minion.elf: ${OBJS}
-	${CC} ${LDFLAGS} -T${LDSCRIPT} -nostdlib 			\
-	 ${OBJS} 							\
-	-lrump -lbmk_core -lbmk_rumpuser				\
+	${LD} ${LDFLAGS} -T${LDSCRIPT} -nostdlib 			\
+	${OBJS} 							\
+	--whole-archive							\
+	-lrumpdev_htif -lrumpdev 					\
+	-lrump								\
+	--no-whole-archive						\
+	-lbmk_core -lbmk_rumpuser				\
 	-o $@
 
 clean:
